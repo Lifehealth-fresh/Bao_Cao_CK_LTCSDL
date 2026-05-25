@@ -1,0 +1,15 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.DoanhThuTheoDanhMucDto>
+@{
+    ViewData["Title"] = "Doanh thu theo danh mục";
+}
+<h2>Doanh thu theo danh mục</h2>
+<table class="table table-bordered">
+    <thead><tr><th>Danh mục</th><th>Doanh thu</th></tr></thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.TenDanhMuc</td><td>@item.DoanhThu.ToString("N0") đ</td></tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

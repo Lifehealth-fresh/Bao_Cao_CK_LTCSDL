@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.ThanhToanDto>
+@{
+    ViewData["Title"] = "Duyệt thanh toán";
+}
+<h2>Danh sách thanh toán chờ duyệt</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Hiện không có thanh toán nào cần xử lý.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã thanh toán</th>
+                <th>Mã đơn hàng</th>
+                <th>Số tiền</th>
+                <th>Phương thức</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tt in Model)
+            {
+                <tr>
+                    <td>@tt.ThanhToanID</td>
+                    <td>@tt.DonHangID</td>
+                    <td>@tt.SoTien.ToString("N0") đ</td>
+                    <td>@tt.PhuongThuc</td>
+                    <td><span class="badge bg-warning">@tt.TrangThai</span></td>
+                    <td>
+                        <form method="post" asp-action="XacNhan" style="display:inline-block">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="thanhToanId" value="@tt.ThanhToanID" />
+                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Xác nhận thanh toán này?')">Duyệt</button>
+                        </form>
+                        <form method="post" asp-action="TuChoi" style="display:inline-block">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="thanhToanId" value="@tt.ThanhToanID" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Từ chối thanh toán này? Đơn hàng sẽ bị hủy.')">Từ chối</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

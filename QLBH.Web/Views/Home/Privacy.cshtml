@@ -1,0 +1,25 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.SanPhamDto>
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+<h2>Sản phẩm mới</h2>
+<div class="row">
+    @foreach (var sp in Model)
+    {
+        <div class="col-md-3">
+            <div class="card mb-3">
+                <img src="@sp.HinhAnh" class="card-img-top" style="height:200px;object-fit:cover" />
+                <div class="card-body">
+                    <h5 class="card-title">@sp.TenSanPham</h5>
+                    <p class="card-text">@sp.GiaCoBan.ToString("N0") đ</p>
+                    <a asp-controller="SanPham"
+                           asp-action="Details"
+                           asp-route-id="@sp.SanPhamID"
+                           class="btn btn-outline-primary btn-sm">
+                        Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,43 @@
+﻿@model QLBH.BLL.DTOs.DonHangDto
+@{
+    ViewData["Title"] = "Đơn hàng #" + Model.DonHangID;
+}
+<h2>Đơn hàng #@Model.DonHangID</h2>
+<div class="card mb-3">
+    <div class="card-header">Thông tin chung</div>
+    <div class="card-body">
+        <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
+        <p><strong>Trạng thái:</strong> @Model.TrangThai</p>
+        <p><strong>Phương thức thanh toán:</strong> @(string.IsNullOrEmpty(Model.PhuongThucThanhToan) ? "COD" : Model.PhuongThucThanhToan)</p>
+        <p><strong>Mã voucher:</strong> @(string.IsNullOrEmpty(Model.MaVoucher) ? "Không sử dụng" : Model.MaVoucher)</p>
+        <p><strong>Giảm giá:</strong> @Model.GiamGia.ToString("N0") đ</p>
+        <p><strong>Người nhận:</strong> @Model.TenNguoiNhan - @Model.SoDienThoaiNhan</p>
+        <p><strong>Địa chỉ giao hàng:</strong> @Model.DiaChiNhanHang</p>
+        <p><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.GhiChu) ? "Không có" : Model.GhiChu)</p>
+        <p><strong>Tạm tính:</strong> @Model.TamTinh.ToString("N0") đ</p>
+        <p><strong>Tổng tiền:</strong> @Model.TongTien.ToString("N0") đ</p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">Sản phẩm đã mua</div>
+    <div class="card-body">
+        <table class="table table-sm">
+            <thead>
+                <tr><th>Sản phẩm</th><th>Thông tin</th><th>Số lượng</th><th>Đơn giá</th><th>Thành tiền</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var ct in Model.ChiTietDonHangs)
+                {
+                    <tr>
+                        <td>@ct.TenSanPham</td>
+                        <td>@ct.ThongTin</td>
+                        <td>@ct.SoLuong</td>
+                        <td>@ct.DonGia.ToString("N0") đ</td>
+                        <td>@ct.ThanhTien.ToString("N0") đ</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<a href="@Url.Action("Index")" class="btn btn-secondary mt-3">Quay lại lịch sử đơn hàng</a>

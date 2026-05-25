@@ -1,0 +1,41 @@
+﻿@model QLBH.BLL.DTOs.UpdateBienTheSanPhamDto
+@{
+    ViewData["Title"] = "Sửa biến thể";
+}
+<h2>Sửa biến thể sản phẩm</h2>
+<form method="post">
+    <input type="hidden" asp-for="BienTheID" />
+    <div class="mb-3">
+        <label asp-for="SanPhamID" class="form-label">Sản phẩm</label>
+        <select asp-for="SanPhamID" asp-items="ViewBag.SanPhams" class="form-control">
+            <option value="">-- Chọn sản phẩm --</option>
+        </select>
+        <span asp-validation-for="SanPhamID" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Size" class="form-label">Size</label>
+        <input asp-for="Size" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="MauSac" class="form-label">Màu sắc</label>
+        <input asp-for="MauSac" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="MaMau" class="form-label">Mã màu (hex)</label>
+        <input asp-for="MaMau" class="form-control" type="color" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Gia" class="form-label">Giá</label>
+        <input asp-for="Gia" class="form-control" type="number" step="any" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="SoLuongTon" class="form-label">Số lượng tồn</label>
+        <input asp-for="SoLuongTon" class="form-control" type="number" />
+    </div>
+    <div class="mb-3 form-check">
+        <input asp-for="TrangThai" class="form-check-input" />
+        <label asp-for="TrangThai" class="form-check-label">Kích hoạt</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy</a>
+</form>

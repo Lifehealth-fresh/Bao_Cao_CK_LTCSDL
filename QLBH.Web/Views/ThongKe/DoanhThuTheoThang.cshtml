@@ -1,0 +1,24 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.DoanhThuTheoThangDto>
+@{
+    ViewData["Title"] = "Doanh thu theo tháng";
+}
+<h2>Doanh thu theo tháng</h2>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-3">
+        <label>Năm</label>
+        <input type="number" name="nam" class="form-control" value="@Context.Request.Query["nam"]" />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary">Lọc</button>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead><tr><th>Năm</th><th>Tháng</th><th>Số đơn</th><th>Doanh thu</th></tr></thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.Nam</td><td>@item.Thang</td><td>@item.SoDon</td><td>@item.DoanhThu.ToString("N0") đ</td></tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

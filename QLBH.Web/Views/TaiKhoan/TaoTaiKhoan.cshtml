@@ -1,0 +1,38 @@
+﻿@model QLBH.BLL.DTOs.TaoTaiKhoanDto
+@{
+    ViewData["Title"] = "Tạo tài khoản mới";
+}
+<h2>Tạo tài khoản</h2>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="MatKhau" class="form-label">Mật khẩu</label>
+        <input asp-for="MatKhau" type="password" class="form-control" />
+        <span asp-validation-for="MatKhau" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="VaiTro" class="form-label">Vai trò</label>
+        <select asp-for="VaiTro" class="form-control">
+            <option value="KhachHang">Khách hàng</option>
+            <option value="NhanVien">Nhân viên</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="HoTen" class="form-label">Họ tên</label>
+        <input asp-for="HoTen" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+        <input asp-for="DiaChi" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
+    <a asp-action="DanhSach" class="btn btn-secondary">Hủy</a>
+</form>

@@ -1,0 +1,100 @@
+﻿@model QLBH.BLL.DTOs.UpdateSanPhamDto
+@{
+    ViewData["Title"] = "Sửa sản phẩm";
+}
+<h2>Sửa sản phẩm: @Model.TenSanPham</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    <input type="hidden" asp-for="SanPhamID" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="TenSanPham" class="form-label">Tên sản phẩm</label>
+                <input asp-for="TenSanPham" class="form-control" required />
+                <span asp-validation-for="TenSanPham" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="DanhMucID" class="form-label">Danh mục</label>
+                <select asp-for="DanhMucID" class="form-control" asp-items="ViewBag.DanhMucList"></select>
+                <span asp-validation-for="DanhMucID" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="GiaCoBan" class="form-label">Giá cơ bản (VNĐ)</label>
+                <input asp-for="GiaCoBan" class="form-control" type="number" step="any" required />
+                <span asp-validation-for="GiaCoBan" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label>Hình ảnh hiện tại</label><br />
+                <img src="@(string.IsNullOrEmpty(Model.HinhAnh) ? "/images/noimage.jpg" : "/images/" + Model.HinhAnh)" style="max-width:150px;" />
+                <input type="hidden" asp-for="HinhAnh" />
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Thay đổi ảnh (nếu có)</label>
+        <input type="file" name="fileAnh" class="form-control" accept="image/*" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MoTa" class="form-label">Mô tả</label>
+        <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label asp-for="ThuongHieu" class="form-label">Thương hiệu</label>
+                <input asp-for="ThuongHieu" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label asp-for="ChatLieu" class="form-label">Chất liệu</label>
+                <input asp-for="ChatLieu" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label asp-for="HuongDanBaoQuan" class="form-label">Hướng dẫn bảo quản</label>
+                <input asp-for="HuongDanBaoQuan" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Hiển thị Ngày cập nhật (chỉ đọc) -->
+    <div class="mb-3">
+        <label class="form-label">Ngày cập nhật gần nhất</label>
+        <input class="form-control" readonly value="@(Model.NgayCapNhat?.ToString("dd/MM/yyyy HH:mm") ?? "")" />
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="activeCheckbox" name="isActive" value="true" @(Model.TrangThai == "HoatDong" ? "checked" : "") />
+        <label class="form-check-label" for="activeCheckbox">Kích hoạt (sản phẩm được bán)</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a asp-action="Admin" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

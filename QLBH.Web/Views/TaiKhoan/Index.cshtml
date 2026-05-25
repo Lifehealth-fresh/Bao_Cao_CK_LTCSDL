@@ -1,0 +1,14 @@
+﻿@model QLBH.BLL.DTOs.TaiKhoanDto
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+<h2>Thông tin tài khoản</h2>
+<div class="card">
+    <div class="card-body">
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Vai trò:</strong> @Model.VaiTro</p>
+        <p><strong>Trạng thái:</strong> @(Model.TrangThai ? "Hoạt động" : "Khóa")</p>
+        <a href="/TaiKhoan/DoiMatKhau" class="btn btn-warning">Đổi mật khẩu</a>
+        <a href="/TaiKhoan/CapNhatThongTin" class="btn btn-primary">Cập nhật thông tin</a>
+    </div>
+</div>

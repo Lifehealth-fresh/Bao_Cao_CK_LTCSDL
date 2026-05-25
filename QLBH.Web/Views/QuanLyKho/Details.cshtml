@@ -1,0 +1,55 @@
+﻿@using QLBH.BLL.DTOs
+@model QLBH.BLL.DTOs.PhieuNhapDto
+@{
+    ViewData["Title"] = "Chi tiết phiếu nhập";
+    var chiTiet = ViewBag.ChiTiet as List<ChiTietPhieuNhapDto>;
+}
+
+<h2>Chi tiết phiếu nhập #@Model.PhieuNhapID</h2>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Ngày nhập</dt>
+            <dd class="col-sm-9">@Model.NgayNhap.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-3">Nhân viên nhập</dt>
+            <dd class="col-sm-9">@Model.TenNhanVien</dd>
+
+            <dt class="col-sm-3">Tổng tiền</dt>
+            <dd class="col-sm-9">@Model.TongTien.ToString("N0") ₫</dd>
+
+            <dt class="col-sm-3">Ghi chú</dt>
+            <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.GhiChu) ? "Không" : Model.GhiChu)</dd>
+        </dl>
+    </div>
+</div>
+
+<h4>Danh sách sản phẩm nhập</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Size / Màu</th>
+            <th>Số lượng</th>
+            <th>Giá nhập</th>
+            <th>Thành tiền</th>
+            <th>Giá bán hiện tại</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ct in chiTiet)
+        {
+            <tr>
+                <td>@ct.TenSanPham</td>
+                <td>@ct.Size - @ct.MauSac</td>
+                <td>@ct.SoLuong</td>
+                <td>@ct.GiaNhap.ToString("N0") ₫</td>
+                <td>@ct.ThanhTien.ToString("N0") ₫</td>
+                <td>@ct.GiaBanHienTai.ToString("N0") ₫</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

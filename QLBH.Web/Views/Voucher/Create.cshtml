@@ -1,0 +1,64 @@
+﻿@model QLBH.BLL.DTOs.CreateVoucherDto
+@{
+    ViewData["Title"] = "Thêm voucher";
+}
+<h2>Thêm voucher</h2>
+<form method="post">
+    @Html.AntiForgeryToken()
+    <p asp-validation-summary="ModelOnly" class="text-danger"></p>
+
+    <p class="mb-3">
+        <label asp-for="MaVoucher" class="form-label">Mã voucher</label>
+        <input asp-for="MaVoucher" class="form-control" required />
+        <span asp-validation-for="MaVoucher" class="text-danger"></span>
+    </p>
+    <p class="mb-3">
+        <label asp-for="MoTa" class="form-label">Mô tả</label>
+        <input asp-for="MoTa" class="form-control" />
+    </p>
+    <p class="mb-3">
+        <label asp-for="LoaiGiam" class="form-label">Loại giảm</label>
+        <select asp-for="LoaiGiam" class="form-control">
+            <option value="PhanTram">Phần trăm (%)</option>
+            <option value="TienMat">Tiền mặt (VNĐ)</option>
+        </select>
+    </p>
+    <p class="row">
+        <span class="col-md-4 mb-3 d-inline-block">
+            <label asp-for="GiaTriGiam" class="form-label">Giá trị giảm</label>
+            <input asp-for="GiaTriGiam" class="form-control" type="number" step="any" min="0" required />
+        </span>
+        <span class="col-md-4 mb-3 d-inline-block">
+            <label asp-for="DonToiThieu" class="form-label">Đơn tối thiểu</label>
+            <input asp-for="DonToiThieu" class="form-control" type="number" step="any" min="0" />
+        </span>
+        <span class="col-md-4 mb-3 d-inline-block">
+            <label asp-for="GiamToiDa" class="form-label">Giảm tối đa (nếu %)</label>
+            <input asp-for="GiamToiDa" class="form-control" type="number" step="any" min="0" />
+        </span>
+    </p>
+    <p class="row">
+        <span class="col-md-4 mb-3 d-inline-block">
+            <label asp-for="SoLuong" class="form-label">Số lượng</label>
+            <input asp-for="SoLuong" class="form-control" type="number" min="1" required />
+        </span>
+        <span class="col-md-4 mb-3 d-inline-block">
+            <label asp-for="NgayBatDau" class="form-label">Ngày bắt đầu</label>
+            <input asp-for="NgayBatDau" class="form-control" type="date" required />
+        </span>
+        <span class="col-md-4 mb-3 d-inline-block">
+            <label asp-for="NgayKetThuc" class="form-label">Ngày kết thúc</label>
+            <input asp-for="NgayKetThuc" class="form-control" type="date" required />
+        </span>
+    </p>
+    <p class="mb-3 form-check">
+        <input asp-for="TrangThai" class="form-check-input" />
+        <label asp-for="TrangThai" class="form-check-label">Kích hoạt</label>
+    </p>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

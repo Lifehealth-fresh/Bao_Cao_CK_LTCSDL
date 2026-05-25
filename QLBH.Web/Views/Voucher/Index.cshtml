@@ -1,0 +1,29 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.VoucherDto>
+@{
+    ViewData["Title"] = "Quản lý voucher";
+}
+<h2>Quản lý voucher</h2>
+<a href="@Url.Action("Create")" class="btn btn-primary mb-3">Thêm voucher</a>
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Mã</th><th>Mô tả</th><th>Giảm</th><th>Đơn tối thiểu</th><th>Số lượng</th><th>Hạn</th><th>Trạng thái</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.MaVoucher</td>
+                <td>@v.MoTa</td>
+                <td>@(v.LoaiGiam == "PhanTram" ? v.GiaTriGiam + "%" : v.GiaTriGiam.ToString("N0") + "đ")</td>
+                <td>@v.DonToiThieu.ToString("N0") đ</td>
+                <td>@v.SoLuong (đã dùng @v.DaSuDung)</td>
+                <td>@v.NgayBatDau.ToString("dd/MM/yyyy") - @v.NgayKetThuc.ToString("dd/MM/yyyy")</td>
+                <td>@(v.TrangThai ? "Hoạt động" : "Khóa")</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = v.VoucherID })" class="btn btn-sm btn-warning">Sửa</a>
+                    <a href="@Url.Action("Delete", new { id = v.VoucherID })" class="btn btn-sm btn-danger" onclick="return confirm('Xóa voucher?')">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

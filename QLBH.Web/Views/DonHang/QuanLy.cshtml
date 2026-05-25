@@ -1,0 +1,46 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.DonHangDto>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+}
+<h2>Quản lý đơn hàng</h2>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-3">
+        <input type="text" name="keyword" class="form-control" placeholder="Mã đơn / Tên khách" value="@Context.Request.Query["keyword"]" />
+    </div>
+    <div class="col-md-2">
+        <select name="trangThai" class="form-control">
+            <option value="">-- Trạng thái --</option>
+            <option value="ChoXuLy" selected="@(ViewBag.TrangThai == "ChoXuLy")">Chờ xử lý</option>
+            <option value="DaThanhToan" selected="@(ViewBag.TrangThai == "DaThanhToan")">Đã thanh toán</option>
+            <option value="DaHuy" selected="@(ViewBag.TrangThai == "DaHuy")">Đã hủy</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <input type="date" name="tuNgay" class="form-control" placeholder="Từ ngày" />
+    </div>
+    <div class="col-md-2">
+        <input type="date" name="denNgay" class="form-control" placeholder="Đến ngày" />
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <a asp-action="QuanLy" class="btn btn-secondary">Xóa bộ lọc</a>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Mã đơn</th><th>Khách hàng</th><th>Ngày đặt</th><th>Tổng tiền</th><th>Trạng thái</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var dh in Model)
+        {
+            <tr>
+                <td>@dh.DonHangID</td>
+                <td>@dh.TenKhachHang</td>
+                <td>@dh.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@dh.TongTien.ToString("N0") đ</td>
+                <td>@dh.TrangThai</td>
+                <td><a asp-action="ChiTietDonHang" asp-route-id="@dh.DonHangID" class="btn btn-sm btn-info">Chi tiết</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

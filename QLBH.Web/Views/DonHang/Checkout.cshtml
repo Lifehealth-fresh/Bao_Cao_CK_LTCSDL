@@ -1,0 +1,123 @@
+﻿@model QLBH.BLL.DTOs.CreateDonHangDto
+@{
+    ViewData["Title"] = "Thanh toán";
+    var vouchers = ViewBag.Vouchers as List<QLBH.BLL.DTOs.VoucherDto> ?? new List<QLBH.BLL.DTOs.VoucherDto>();
+    var cartTotal = ViewBag.CartTotal as decimal? ?? 0;
+}
+
+<h2>Thông tin đặt hàng</h2>
+
+<form method="post" id="checkoutForm">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="TenNguoiNhan" class="form-label">Tên người nhận</label>
+        <input asp-for="TenNguoiNhan" class="form-control" required />
+        <span asp-validation-for="TenNguoiNhan" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" required />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DiaChi" class="form-label">Địa chỉ giao hàng</label>
+        <input asp-for="DiaChi" class="form-control" required />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MaVoucher" class="form-label">Mã voucher (nếu có)</label>
+        <select asp-for="MaVoucher" class="form-select" id="voucherSelect">
+            <option value="">-- Không dùng voucher --</option>
+            @foreach (var v in vouchers)
+            {
+                <option value="@v.MaVoucher"
+                        data-giam="@v.GiaTriGiam"
+                        data-loai="@v.LoaiGiam"
+                        data-toida="@v.GiamToiDa"
+                        data-don-toi-thieu="@v.DonToiThieu">
+                    @v.MaVoucher - Giảm @(v.LoaiGiam == "PhanTram" ? $"{v.GiaTriGiam}%" : $"{v.GiaTriGiam:N0}đ")
+                    (Đơn tối thiểu @v.DonToiThieu:N0đ)
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GhiChu" class="form-label">Ghi chú (không bắt buộc)</label>
+        <textarea asp-for="GhiChu" class="form-control" rows="2"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PhuongThucThanhToan" class="form-label">Phương thức thanh toán</label>
+        <select asp-for="PhuongThucThanhToan" class="form-select">
+            <option value="COD">COD (Thanh toán khi nhận hàng)</option>
+            <option value="BankTransfer">Chuyển khoản ngân hàng</option>
+        </select>
+    </div>
+
+    <div class="alert alert-info">
+        <strong>Tổng tạm tính:</strong> <span id="tamTinh">@cartTotal.ToString("N0")</span> đ<br />
+        <strong>Giảm giá:</strong> <span id="giamGia">0</span> đ<br />
+        <strong>Thành tiền:</strong> <span id="thanhTien">@cartTotal.ToString("N0")</span> đ
+    </div>
+
+    <button type="submit" class="btn btn-success">Đặt hàng</button>
+    <a href="@Url.Action("Index", "GioHang")" class="btn btn-secondary">Quay lại giỏ hàng</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const voucherSelect = document.getElementById('voucherSelect');
+        const tamTinhSpan = document.getElementById('tamTinh');
+        const giamGiaSpan = document.getElementById('giamGia');
+        const thanhTienSpan = document.getElementById('thanhTien');
+
+        function formatNumber(num) {
+            return num.toLocaleString('vi-VN');
+        }
+
+        function calculateDiscount() {
+            const selected = voucherSelect.options[voucherSelect.selectedIndex];
+            let tamTinh = parseFloat(tamTinhSpan.innerText.replace(/[^0-9]/g, '')) || 0;
+            let giamGia = 0;
+
+            if (selected.value) {
+                const loai = selected.dataset.loai;
+                let giaTri = parseFloat(selected.dataset.giam);
+                const toiDa = selected.dataset.toida ? parseFloat(selected.dataset.toida) : Infinity;
+                const donToiThieu = parseFloat(selected.dataset.donToiThieu) || 0;
+
+                if (tamTinh >= donToiThieu) {
+                    if (loai === 'PhanTram') {
+                        giamGia = tamTinh * giaTri / 100;
+                        if (giamGia > toiDa) giamGia = toiDa;
+                    } else { // TienMat
+                        giamGia = Math.min(giaTri, tamTinh);
+                    }
+                }
+            }
+            const thanhTien = tamTinh - giamGia;
+            giamGiaSpan.innerText = formatNumber(giamGia);
+            thanhTienSpan.innerText = formatNumber(thanhTien);
+        }
+
+        voucherSelect.addEventListener('change', calculateDiscount);
+        calculateDiscount();
+
+        // Validate form trước khi submit
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            const ten = document.querySelector('[name="TenNguoiNhan"]').value.trim();
+            const sdt = document.querySelector('[name="SoDienThoai"]').value.trim();
+            const diaChi = document.querySelector('[name="DiaChi"]').value.trim();
+            if (!ten || !sdt || !diaChi) {
+                alert('Vui lòng điền đầy đủ thông tin: Họ tên, SĐT, Địa chỉ.');
+                e.preventDefault();
+            }
+        });
+    </script>
+}

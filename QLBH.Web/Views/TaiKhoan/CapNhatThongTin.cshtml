@@ -1,0 +1,33 @@
+﻿@model QLBH.BLL.DTOs.CapNhatThongTinDto
+@{
+    ViewData["Title"] = "Cập nhật thông tin";
+    var isNhanVien = User.IsInRole("NhanVien");
+}
+<h2>Cập nhật thông tin</h2>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="HoTen" class="form-label">Họ tên</label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    @if (!isNhanVien)
+    {
+        <div class="mb-3">
+            <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+            <input asp-for="DiaChi" class="form-control" />
+        </div>
+    }
+    else
+    {
+        <input type="hidden" asp-for="DiaChi" value="@Model.DiaChi" />
+    }
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="ThongTin" class="btn btn-secondary">Hủy</a>
+</form>

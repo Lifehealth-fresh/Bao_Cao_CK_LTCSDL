@@ -1,0 +1,19 @@
+﻿@model QLBH.BLL.DTOs.DoiMatKhauDto
+@{
+    ViewData["Title"] = "Đổi mật khẩu";
+}
+<h2>Đổi mật khẩu</h2>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="MatKhauCu" class="form-label">Mật khẩu cũ</label>
+        <input asp-for="MatKhauCu" type="password" class="form-control" />
+        <span asp-validation-for="MatKhauCu" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="MatKhauMoi" class="form-label">Mật khẩu mới</label>
+        <input asp-for="MatKhauMoi" type="password" class="form-control" />
+        <span asp-validation-for="MatKhauMoi" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+    <a asp-action="ThongTin" class="btn btn-secondary">Hủy</a>
+</form>

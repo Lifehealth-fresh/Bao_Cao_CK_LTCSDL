@@ -1,0 +1,32 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.NguoiDungDto>
+@{
+    ViewData["Title"] = "Danh sách người dùng";
+}
+<h2>Quản lý người dùng</h2>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-6">
+        <input type="text" name="keyword" class="form-control" placeholder="Tìm theo email hoặc họ tên" value="@Context.Request.Query["keyword"]" />
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary">Tìm</button>
+        <a asp-action="DanhSach" class="btn btn-secondary">Xóa lọc</a>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead><tr><th>ID</th><th>Email</th><th>Họ tên</th><th>Vai trò</th><th>Trạng thái</th><th>Điện thoại</th><th>Địa chỉ</th></tr></thead>
+    <tbody>
+        @foreach (var nd in Model)
+        {
+            <tr>
+                <td>@nd.TaiKhoanID</td>
+                <td>@nd.Email</td>
+                <td>@nd.HoTen</td>
+                <td>@nd.VaiTro</td>
+                <td>@(nd.TrangThai ? "Hoạt động" : "Khóa")</td>
+                <td>@nd.SoDienThoai</td>
+                <td>@nd.DiaChi</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="TaoTaiKhoan" class="btn btn-primary">Tạo tài khoản mới</a>

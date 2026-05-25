@@ -1,0 +1,53 @@
+﻿@using QLBH.BLL.DTOs
+@model PagedResult<PhieuNhapDto>
+@{
+    ViewData["Title"] = "Quản lý nhập kho";
+}
+
+<h2>Phiếu nhập kho</h2>
+
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-3">
+        <label>Từ ngày</label>
+        <input type="date" name="tuNgay" class="form-control" value="@ViewBag.TuNgay" />
+    </div>
+    <div class="col-md-3">
+        <label>Đến ngày</label>
+        <input type="date" name="denNgay" class="form-control" value="@ViewBag.DenNgay" />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary">Lọc</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Xóa lọc</a>
+    </div>
+    <div class="col-md-4 d-flex justify-content-end">
+        <a asp-action="Create" class="btn btn-success">+ Tạo phiếu nhập mới</a>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Mã phiếu</th>
+            <th>Ngày nhập</th>
+            <th>Nhân viên</th>
+            <th>Số mặt hàng</th>
+            <th>Tổng tiền</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.PhieuNhapID</td>
+                <td>@item.NgayNhap.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@item.TenNhanVien</td>
+                <td>@item.SoLuongMatHang</td>
+                <td>@item.TongTien.ToString("N0") ₫</td>
+                <td><a asp-action="Details" asp-route-id="@item.PhieuNhapID" class="btn btn-sm btn-info">Chi tiết</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@await Html.PartialAsync("_Pagination", Model)

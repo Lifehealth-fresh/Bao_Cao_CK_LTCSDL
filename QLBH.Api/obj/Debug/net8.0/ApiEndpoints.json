@@ -1,0 +1,873 @@
+[
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.BienTheSanPhamApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/BienTheSanPhamApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sanPhamId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.BienTheSanPhamApiController",
+    "Method": "Create",
+    "RelativePath": "api/BienTheSanPhamApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CreateBienTheSanPhamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.BienTheSanPhamApiController",
+    "Method": "GetById",
+    "RelativePath": "api/BienTheSanPhamApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.BienTheSanPhamApiController",
+    "Method": "Update",
+    "RelativePath": "api/BienTheSanPhamApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.UpdateBienTheSanPhamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.BienTheSanPhamApiController",
+    "Method": "Delete",
+    "RelativePath": "api/BienTheSanPhamApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DanhMucApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/DanhMucApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DanhMucApiController",
+    "Method": "Create",
+    "RelativePath": "api/DanhMucApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CreateDanhMucDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DanhMucApiController",
+    "Method": "GetById",
+    "RelativePath": "api/DanhMucApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DanhMucApiController",
+    "Method": "Update",
+    "RelativePath": "api/DanhMucApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.UpdateDanhMucDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DanhMucApiController",
+    "Method": "Delete",
+    "RelativePath": "api/DanhMucApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DonHangApiController",
+    "Method": "GetAllOrders",
+    "RelativePath": "api/DonHangApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DonHangApiController",
+    "Method": "GetOrderById",
+    "RelativePath": "api/DonHangApi/{donHangId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "donHangId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DonHangApiController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/DonHangApi/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CreateDonHangDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DonHangApiController",
+    "Method": "GetMyHistory",
+    "RelativePath": "api/DonHangApi/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DonHangApiController",
+    "Method": "Search",
+    "RelativePath": "api/DonHangApi/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "keyword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "trangThai",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "tuNgay",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "denNgay",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.DonHangApiController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/DonHangApi/status/{donHangId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "donHangId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "trangThaiMoi",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.GioHangApiController",
+    "Method": "AddToCart",
+    "RelativePath": "api/GioHangApi/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.AddToCartDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.GioHangApiController",
+    "Method": "ClearMyCart",
+    "RelativePath": "api/GioHangApi/clear",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.GioHangApiController",
+    "Method": "GetMyCart",
+    "RelativePath": "api/GioHangApi/my",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.GioHangApiController",
+    "Method": "RemoveItem",
+    "RelativePath": "api/GioHangApi/remove/{chiTietId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chiTietId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.GioHangApiController",
+    "Method": "UpdateQuantity",
+    "RelativePath": "api/GioHangApi/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.UpdateCartItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.QuanLyKhoApiController",
+    "Method": "GetBienTheHoatDong",
+    "RelativePath": "api/QuanLyKhoApi/bien-the-hoat-dong",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.QuanLyKhoApiController",
+    "Method": "GetPhieuNhap",
+    "RelativePath": "api/QuanLyKhoApi/phieu-nhap",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tuNgay",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "denNgay",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.QuanLyKhoApiController",
+    "Method": "TaoPhieuNhap",
+    "RelativePath": "api/QuanLyKhoApi/phieu-nhap",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "QLBH.BLL.DTOs.TaoPhieuNhapDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.QuanLyKhoApiController",
+    "Method": "GetPhieuNhapById",
+    "RelativePath": "api/QuanLyKhoApi/phieu-nhap/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/SanPhamApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "keyword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "danhMucId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "chiLayHoatDong",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "Create",
+    "RelativePath": "api/SanPhamApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CreateSanPhamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "GetById",
+    "RelativePath": "api/SanPhamApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "Update",
+    "RelativePath": "api/SanPhamApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.UpdateSanPhamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "Delete",
+    "RelativePath": "api/SanPhamApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "CreateBienThe",
+    "RelativePath": "api/SanPhamApi/bienthe",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CreateBienTheSanPhamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "UpdateBienThe",
+    "RelativePath": "api/SanPhamApi/bienthe/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.UpdateBienTheSanPhamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "DeleteBienThe",
+    "RelativePath": "api/SanPhamApi/bienthe/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.SanPhamApiController",
+    "Method": "GetAllBienThe",
+    "RelativePath": "api/SanPhamApi/bienthe/sanpham/{sanPhamId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sanPhamId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/TaiKhoanApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "GetById",
+    "RelativePath": "api/TaiKhoanApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "Delete",
+    "RelativePath": "api/TaiKhoanApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "DangKy",
+    "RelativePath": "api/TaiKhoanApi/dangky",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "QLBH.BLL.DTOs.DangKyRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "DangNhap",
+    "RelativePath": "api/TaiKhoanApi/dangnhap",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "QLBH.BLL.DTOs.LoginRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "DoiMatKhau",
+    "RelativePath": "api/TaiKhoanApi/doimatkhau",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.DoiMatKhauDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "GetMe",
+    "RelativePath": "api/TaiKhoanApi/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "GetNguoiDungList",
+    "RelativePath": "api/TaiKhoanApi/nguoidung",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.TaiKhoanApiController",
+    "Method": "UpdateThongTin",
+    "RelativePath": "api/TaiKhoanApi/thongtin",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CapNhatThongTinDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThanhToanApiController",
+    "Method": "GetMyHistory",
+    "RelativePath": "api/ThanhToanApi/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThanhToanApiController",
+    "Method": "GetPendingPayments",
+    "RelativePath": "api/ThanhToanApi/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThanhToanApiController",
+    "Method": "ProcessPayment",
+    "RelativePath": "api/ThanhToanApi/process",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.ConfirmPaymentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThongKeApiController",
+    "Method": "GetDashboard",
+    "RelativePath": "api/ThongKeApi/dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThongKeApiController",
+    "Method": "GetDoanhThuTheoDanhMuc",
+    "RelativePath": "api/ThongKeApi/doanhthu/danhmuc",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThongKeApiController",
+    "Method": "GetDoanhThuTheoNgay",
+    "RelativePath": "api/ThongKeApi/doanhthu/ngay",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tuNgay",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "denNgay",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.ThongKeApiController",
+    "Method": "GetDoanhThuTheoThang",
+    "RelativePath": "api/ThongKeApi/doanhthu/thang",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nam",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.VoucherApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/VoucherApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.VoucherApiController",
+    "Method": "Create",
+    "RelativePath": "api/VoucherApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.CreateVoucherDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.VoucherApiController",
+    "Method": "GetById",
+    "RelativePath": "api/VoucherApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.VoucherApiController",
+    "Method": "Update",
+    "RelativePath": "api/VoucherApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "QLBH.BLL.DTOs.UpdateVoucherDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH.Web.Controllers.Api.VoucherApiController",
+    "Method": "Delete",
+    "RelativePath": "api/VoucherApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

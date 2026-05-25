@@ -1,0 +1,28 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.DoanhThuTheoNgayDto>
+@{
+    ViewData["Title"] = "Doanh thu theo ngày";
+}
+<h2>Doanh thu theo ngày</h2>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-3">
+        <label>Từ ngày</label>
+        <input type="date" name="tuNgay" class="form-control" value="@Context.Request.Query["tuNgay"]" />
+    </div>
+    <div class="col-md-3">
+        <label>Đến ngày</label>
+        <input type="date" name="denNgay" class="form-control" value="@Context.Request.Query["denNgay"]" />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary">Lọc</button>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead><tr><th>Ngày</th><th>Số đơn</th><th>Doanh thu</th></tr></thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.Ngay.ToString("dd/MM/yyyy")</td><td>@item.SoDon</td><td>@item.DoanhThu.ToString("N0") đ</td></tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

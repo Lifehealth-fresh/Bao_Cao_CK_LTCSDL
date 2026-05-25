@@ -1,0 +1,17 @@
+﻿@model List<QLBH.BLL.DTOs.DonHangThanhCongDto>
+@{
+    ViewData["Title"] = "Đơn hàng thành công";
+}
+<h2>Đơn hàng đã thanh toán</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr><th>Mã đơn</th><th>Ngày đặt</th><th>Khách hàng</th><th>Tổng tiền</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var dh in Model)
+        {
+            <tr><td>@dh.DonHangID</td><td>@dh.NgayDat.ToString("dd/MM/yyyy HH:mm")</td><td>@dh.KhachHang</td><td>@dh.TongTien.ToString("N0") đ</td></tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

@@ -1,0 +1,77 @@
+﻿@using QLBH.BLL.DTOs
+@model TaoPhieuNhapDto
+@{
+    ViewData["Title"] = "Tạo phiếu nhập kho";
+    var bienTheList = ViewBag.BienTheList as IEnumerable<dynamic>;
+}
+
+<h2>Tạo phiếu nhập kho</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="GhiChu" class="form-label"></label>
+        <textarea asp-for="GhiChu" class="form-control" rows="2" maxlength="500" placeholder="Ghi chú phiếu nhập (tùy chọn)"></textarea>
+    </div>
+
+    <h4>Chi tiết nhập hàng</h4>
+    <table class="table table-bordered" id="tblChiTiet">
+        <thead>
+            <tr>
+                <th>Sản phẩm (biến thể)</th>
+                <th>Số lượng</th>
+                <th>Giá nhập</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button type="button" id="btnThemDong" class="btn btn-secondary">+ Thêm dòng</button>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Lưu phiếu nhập</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        var bienTheList = @Html.Raw(Json.Serialize(ViewBag.BienTheList));
+        var index = 0;
+
+        function themDong() {
+            var tbody = $('#tblChiTiet tbody');
+            var row = $('<tr></tr>');
+
+            var select = '<select name="ChiTiet[' + index + '].BienTheID" class="form-control" required>';
+            select += '<option value="">-- Chọn sản phẩm --</option>';
+            for (var i = 0; i < bienTheList.length; i++) {
+                select += '<option value="' + bienTheList[i].bienTheID + '">' +
+                    bienTheList[i].tenSanPham + ' - ' + bienTheList[i].size + ' - ' + bienTheList[i].mauSac + '</option>';
+            }
+            select += '</select>';
+
+            row.append($('<td></td>').html(select));
+            row.append($('<td></td>').html('<input type="number" name="ChiTiet[' + index + '].SoLuong" class="form-control soLuong" min="1" required>'));
+            row.append($('<td>').html('<input type="number" step="any" name="ChiTiet[' + index + '].GiaNhap" class="form-control giaNhap" min="0" required>'));
+            row.append($('<td></td>').html('<span class="thanhTien">0</span>'));
+            row.append($('<td></td>').html('<button type="button" class="btn btn-danger btn-sm xoaDong">Xóa</button>'));
+
+            tbody.append(row);
+            row.find('.soLuong, .giaNhap').on('input', function () { tinhTien(row); });
+            row.find('.xoaDong').click(function () { row.remove(); });
+            index++;
+        }
+
+        function tinhTien(row) {
+            var sl = parseFloat(row.find('.soLuong').val()) || 0;
+            var gn = parseFloat(row.find('.giaNhap').val()) || 0;
+            row.find('.thanhTien').text((sl * gn).toLocaleString('vi-VN') + ' ₫');
+        }
+
+        $(document).ready(function () {
+            $('#btnThemDong').click(themDong);
+            themDong(); // Mặc định một dòng
+        });
+    </script>
+}

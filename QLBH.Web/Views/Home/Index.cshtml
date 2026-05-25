@@ -1,0 +1,57 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.SanPhamDto>
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+<!-- Hero Slider -->
+<div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://placehold.co/1920x600/2c3e50/white?text=Summer+Sale" class="d-block w-100" alt="Sale">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Giảm giá lên đến 50%</h2>
+                <p>Áo thun, quần jean, giày thể thao</p>
+                <a href="/SanPham" class="btn btn-warning">Mua ngay</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://placehold.co/1920x600/e67e22/white?text=New+Collection" class="d-block w-100" alt="New">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Bộ sưu tập mới</h2>
+                <p>Thời trang nam nữ cao cấp</p>
+                <a href="/SanPham" class="btn btn-primary">Xem thêm</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- Sản phẩm nổi bật -->
+<h2 class="mb-4">Sản phẩm nổi bật</h2>
+<div class="row">
+    @foreach (var sp in Model)
+    {
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100 product-card">
+                <img src="@(string.IsNullOrEmpty(sp.HinhAnh) ? "/images/noimage.jpg" : "/images/" + sp.HinhAnh)"
+                     class="card-img-top"
+                     alt="@sp.TenSanPham"
+                     style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@sp.TenSanPham</h5>
+                    <p class="card-text text-danger fw-bold">@sp.GiaCoBan.ToString("N0") đ</p>
+                    <a asp-controller="SanPham"
+                           asp-action="Details"
+                           asp-route-id="@sp.SanPhamID"
+                           class="btn btn-outline-primary btn-sm">
+                        Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

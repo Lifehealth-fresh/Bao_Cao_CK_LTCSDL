@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="QLBH.BLL/QLBH.BLL.csproj" />
+  <Project Path="QLBH.DAL/QLBH.DAL.csproj" />
+  <Project Path="QLBH.Api/QLBH.Api.csproj" />
+  <Project Path="QLBH.Web/QLBH.Web.csproj" />
+</Solution>

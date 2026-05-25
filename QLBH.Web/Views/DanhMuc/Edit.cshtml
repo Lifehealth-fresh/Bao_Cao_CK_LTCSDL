@@ -1,0 +1,23 @@
+﻿@model QLBH.BLL.DTOs.UpdateDanhMucDto
+@{
+    ViewData["Title"] = "Sửa danh mục";
+}
+<h2>Sửa danh mục</h2>
+<form method="post">
+    <input type="hidden" asp-for="DanhMucID" />
+    <div class="mb-3">
+        <label asp-for="TenDanhMuc" class="form-label">Tên danh mục</label>
+        <input asp-for="TenDanhMuc" class="form-control" />
+        <span asp-validation-for="TenDanhMuc" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="MoTa" class="form-label">Mô tả</label>
+        <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="mb-3 form-check">
+        <input asp-for="TrangThai" class="form-check-input" />
+        <label asp-for="TrangThai" class="form-check-label">Kích hoạt</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy</a>
+</form>

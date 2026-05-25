@@ -1,0 +1,80 @@
+﻿@model QLBH.BLL.DTOs.SanPhamDto
+@{
+    ViewData["Title"] = Model.TenSanPham;
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <img src="@(string.IsNullOrEmpty(Model.HinhAnh) ? "/images/noimage.jpg" : "/images/" + Model.HinhAnh)" class="img-fluid" alt="@Model.TenSanPham">
+    </div>
+    <div class="col-md-7">
+        <h2>@Model.TenSanPham</h2>
+        <p class="text-danger fs-3">@Model.GiaCoBan.ToString("N0") đ</p>
+        <p><strong>Danh mục:</strong> @Model.TenDanhMuc</p>
+        <p><strong>Thương hiệu:</strong> @Model.ThuongHieu</p>
+        <p><strong>Chất liệu:</strong> @Model.ChatLieu</p>
+        <p><strong>Mô tả:</strong> @Model.MoTa</p>
+        <p><strong>Hướng dẫn bảo quản:</strong> @Model.HuongDanBaoQuan</p>
+
+        <hr />
+        <h5>Chọn biến thể (Size - Màu)</h5>
+
+        @if (Model.BienTheSanPhams != null && Model.BienTheSanPhams.Any())
+        {
+            <form method="post" action="@Url.Action("AddToCart", "GioHang")" id="addToCartForm">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <select name="BienTheID" class="form-select" required>
+                            <option value="">-- Chọn phân loại --</option>
+                            @foreach (var bt in Model.BienTheSanPhams)
+                            {
+                                <option value="@bt.BienTheID" data-price="@bt.Gia" data-stock="@bt.SoLuongTon">
+                                    @bt.Size - @bt.MauSac (Còn @bt.SoLuongTon)
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="SoLuong" value="1" min="1" class="form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success w-100">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </form>
+
+            <form method="post" action="@Url.Action("MuaNgay", "DonHang")" id="buyNowForm">
+                <input type="hidden" name="bienTheId" id="buyNowBienTheId" />
+                <input type="hidden" name="soLuong" id="buyNowSoLuong" />
+                <button type="submit" class="btn btn-primary w-100">Mua ngay</button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-warning">Sản phẩm này hiện chưa có biến thể.</div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const select = document.querySelector('select[name="BienTheID"]');
+        const buyNowBienThe = document.getElementById('buyNowBienTheId');
+        const buyNowSoLuong = document.getElementById('buyNowSoLuong');
+        const qtyInput = document.querySelector('input[name="SoLuong"]');
+
+        function updateBuyNowFields() {
+            if (select.value) {
+                buyNowBienThe.value = select.value;
+                buyNowSoLuong.value = qtyInput.value;
+            } else {
+                buyNowBienThe.value = '';
+                buyNowSoLuong.value = '';
+            }
+        }
+
+        select.addEventListener('change', updateBuyNowFields);
+        qtyInput.addEventListener('input', updateBuyNowFields);
+        updateBuyNowFields(); // initial sync
+    </script>
+}

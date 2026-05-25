@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.SanPhamDto>
+@await Html.PartialAsync("_Pagination", Model)
+@{
+    ViewData["Title"] = "Tất cả sản phẩm";
+    var danhMucList = ViewBag.DanhMucList as List<QLBH.BLL.DTOs.DanhMucDto>;
+}
+<div class="row">
+    <!-- Sidebar lọc -->
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">Danh mục</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/SanPham">Tất cả</a></li>
+                @if (danhMucList != null)
+                {
+                    foreach (var dm in danhMucList.Where(d => d.TrangThai == true))
+                    {
+                        <li class="list-group-item"><a href="/SanPham?danhMucId=@dm.DanhMucID">@dm.TenDanhMuc</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">Lọc theo giá</div>
+            <div class="card-body">
+                <a href="/SanPham?minPrice=0&maxPrice=200000" class="d-block">Dưới 200.000đ</a>
+                <a href="/SanPham?minPrice=200000&maxPrice=500000" class="d-block">200.000 - 500.000đ</a>
+                <a href="/SanPham?minPrice=500000&maxPrice=1000000" class="d-block">500.000 - 1.000.000đ</a>
+                <a href="/SanPham?minPrice=1000000" class="d-block">Trên 1.000.000đ</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-dark text-white">Tìm kiếm</div>
+            <div class="card-body">
+                <form method="get" action="/SanPham">
+                    <input type="text" name="keyword" class="form-control mb-2" placeholder="Tên sản phẩm..." value="@Context.Request.Query["keyword"]" />
+                    <button type="submit" class="btn btn-primary w-100">Tìm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="col-md-9">
+        <div class="row">
+            @foreach (var sp in Model)
+            {
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                        <img src="@(string.IsNullOrEmpty(sp.HinhAnh) ? "/images/noimage.jpg" : "/images/" + sp.HinhAnh)" class="card-img-top" style="height:200px; object-fit:cover;" alt="@sp.TenSanPham">
+                        <div class="card-body">
+                            <h5 class="card-title">@sp.TenSanPham</h5>
+                            <p class="card-text text-danger fw-bold">@sp.GiaCoBan.ToString("N0") đ</p>
+                            <a href="@Url.Action("Details", new { id = sp.SanPhamID })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

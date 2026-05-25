@@ -1,0 +1,106 @@
+﻿@model QLBH.BLL.DTOs.GioHangDto
+@{
+    ViewData["Title"] = "Giỏ hàng";
+}
+<h2>Giỏ hàng của bạn</h2>
+
+@if (Model == null || Model.ChiTietGioHangs == null || !Model.ChiTietGioHangs.Any())
+{
+    <div class="alert alert-info text-center">
+        <i class="fas fa-shopping-cart fa-3x mb-2"></i>
+        <p>Giỏ hàng của bạn đang trống.</p>
+        <a href="/SanPham" class="btn btn-primary">Tiếp tục mua sắm</a>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Phân loại</th>
+                    <th class="text-end">Đơn giá</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-end">Thành tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChiTietGioHangs)
+                {
+                    <tr>
+                        <td>@item.TenSanPham</td>
+                        <td>Size: @item.Size - Màu: @item.MauSac</td>
+                        <td class="text-end">@item.DonGia.ToString("N0") đ</td>
+                        <td class="text-center">
+                            <form method="post" asp-action="UpdateQuantity">
+                                <input type="hidden" name="ChiTietID" value="@item.ChiTietID" />
+                                <input type="number" name="SoLuong" value="@item.SoLuong" min="1" class="form-control text-center" style="width: 80px; display: inline-block;" />
+                                <button type="submit" class="btn btn-sm btn-secondary">Cập nhật</button>
+                            </form>
+                        </td>
+                        <td class="text-end fw-bold">@((item.DonGia * item.SoLuong).ToString("N0")) đ</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Remove", new { chiTietId = item.ChiTietID })" class="btn btn-sm btn-danger" onclick="return confirm('Xóa sản phẩm này?')">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="table-active">
+                    <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
+                    <td class="text-end fw-bold text-danger fs-5">@Model.TongTien.ToString("N0") đ</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+        <a href="/SanPham" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
+        <div>
+            <a href="@Url.Action("ClearCart")" class="btn btn-warning me-2" onclick="return confirm('Xóa toàn bộ giỏ hàng?')">
+                <i class="fas fa-trash"></i> Xóa giỏ
+            </a>
+            <a href="/DonHang/Checkout" class="btn btn-success"><i class="fas fa-credit-card"></i> Thanh toán</a>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    <script>
+        // Lưu trữ tồn kho của từng sản phẩm (sẽ truyền từ Controller qua data attribute)
+        @if (ViewBag.TonKho != null)
+        {
+                foreach (var item in Model.ChiTietGioHangs)
+                {
+                        var tonKho = ViewBag.TonKho != null && ViewBag.TonKho.ContainsKey(item.ChiTietID)
+                                ? ViewBag.TonKho[item.ChiTietID]
+                                : 999999;
+                        @:window.tonKhoData = window.tonKhoData || {};
+                        @:window.tonKhoData[@item.ChiTietID] = @tonKho;
+                }
+        }
+
+        // Hoặc cách đơn giản hơn: kiểm tra trực tiếp khi submit
+        document.querySelectorAll('form[asp-action="UpdateQuantity"]').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const soLuongInput = this.querySelector('input[name="SoLuong"]');
+                const soLuong = parseInt(soLuongInput.value);
+                
+                // Nếu không có dữ liệu tồn kho từ server, vẫn cho phép gửi (server sẽ kiểm tra)
+                // Chỉ cảnh báo nếu số lượng quá lớn (tạm thời)
+                if (soLuong > 100) {
+                    if (!confirm(`Bạn đang đặt số lượng ${soLuong}. Bạn có chắc chắn?`)) {
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+    </script>
+}

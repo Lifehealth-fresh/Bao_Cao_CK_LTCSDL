@@ -1,0 +1,64 @@
+﻿@* @model dynamic
+@if (Model != null && Model.TotalPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" href="?page=@i&tuNgay=@ViewBag.TuNgay&denNgay=@ViewBag.DenNgay">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+} *@
+
+
+
+@model dynamic
+
+@{
+    // Kiểm tra xem Model có chứa thông tin phân trang không
+    int totalPages = 0;
+    int currentPage = 1;
+    
+    if (Model != null)
+    {
+        // Thử lấy TotalPages từ các nguồn khác nhau
+        if (Model is int pages)
+        {
+            totalPages = pages;
+        }
+        else if (Model.GetType().GetProperty("TotalPages") != null)
+        {
+            totalPages = Model.TotalPages;
+        }
+        else if (Model.GetType().GetProperty("PageCount") != null)
+        {
+            totalPages = Model.PageCount;
+        }
+        
+        if (Model.GetType().GetProperty("PageIndex") != null)
+        {
+            currentPage = Model.PageIndex;
+        }
+        else if (Model.GetType().GetProperty("CurrentPage") != null)
+        {
+            currentPage = Model.CurrentPage;
+        }
+    }
+}
+
+@if (totalPages > 1)
+{
+    <nav>
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" href="?page=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

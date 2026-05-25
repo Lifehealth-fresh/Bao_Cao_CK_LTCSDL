@@ -1,0 +1,28 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.DonHangDto>
+@{
+    ViewData["Title"] = "Lịch sử đơn hàng";
+}
+<h2>Lịch sử mua hàng</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã đơn</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dh in Model)
+        {
+            <tr>
+                <td>@dh.DonHangID</td>
+                <td>@dh.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@dh.TongTien.ToString("N0") đ</td>
+                <td>@dh.TrangThai</td>
+                <td><a asp-action="Details" asp-route-id="@dh.DonHangID">Chi tiết</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

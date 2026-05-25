@@ -1,0 +1,27 @@
+﻿@model QLBH.BLL.DTOs.LoginRequestDto
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+<h2>Đăng nhập</h2>
+<form method="post">
+    @if (!string.IsNullOrEmpty(ViewBag.ReturnUrl))
+    {
+        <div class="alert alert-warning">Vui lòng đăng nhập để tiếp tục.</div>
+    }
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Mật khẩu</label>
+        <input asp-for="MatKhau" type="password" class="form-control" />
+        <span asp-validation-for="MatKhau" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger mt-2">@ViewBag.Error</div>
+    }
+</form>
+<a href="/TaiKhoan/DangKy">Chưa có tài khoản? Đăng ký</a>

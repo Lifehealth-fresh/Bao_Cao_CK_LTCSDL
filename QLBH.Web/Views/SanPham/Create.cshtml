@@ -1,0 +1,61 @@
+﻿@model QLBH.BLL.DTOs.CreateSanPhamDto
+@{
+    ViewData["Title"] = "Thêm sản phẩm mới";
+}
+<h2>Thêm sản phẩm mới</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="TenSanPham" class="form-label">Tên sản phẩm</label>
+        <input asp-for="TenSanPham" class="form-control" required />
+        <span asp-validation-for="TenSanPham" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DanhMucID" class="form-label">Danh mục</label>
+        <select asp-for="DanhMucID" class="form-control" asp-items="ViewBag.DanhMucList">
+            <option value="">-- Chọn danh mục --</option>
+        </select>
+        <span asp-validation-for="DanhMucID" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GiaCoBan" class="form-label">Giá cơ bản (VNĐ)</label>
+        <input asp-for="GiaCoBan" class="form-control" type="number" step="any" required />
+        <span asp-validation-for="GiaCoBan" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Hình ảnh</label>
+        <input type="file" name="fileAnh" class="form-control" accept="image/*" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MoTa" class="form-label">Mô tả</label>
+        <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ThuongHieu" class="form-label">Thương hiệu</label>
+        <input asp-for="ThuongHieu" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ChatLieu" class="form-label">Chất liệu</label>
+        <input asp-for="ChatLieu" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HuongDanBaoQuan" class="form-label">Hướng dẫn bảo quản</label>
+        <textarea asp-for="HuongDanBaoQuan" class="form-control" rows="2"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Admin" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

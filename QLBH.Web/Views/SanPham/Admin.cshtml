@@ -1,0 +1,62 @@
+﻿@model IEnumerable<QLBH.BLL.DTOs.SanPhamDto>
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+<a asp-action="Create" class="btn btn-primary mb-3">Thêm sản phẩm</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ảnh</th>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Danh mục</th>
+            <th>Giá</th>
+            <th>Trạng thái</th>
+            <th>Ngày cập nhật</th>   <!-- Thêm cột mới -->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sp in Model)
+        {
+            <tr>
+                <td><img src="@(string.IsNullOrEmpty(sp.HinhAnh) ? "/images/noimage.jpg" : "/images/" + sp.HinhAnh)" style="max-width:60px;" alt="@sp.TenSanPham" /></td>
+                <td>@sp.SanPhamID</td>
+                <td>@sp.TenSanPham</td>
+                <td>@sp.TenDanhMuc</td>
+                <td>@sp.GiaCoBan.ToString("N0") đ</td>
+                <td>@sp.TrangThai</td>
+                <td>@sp.NgayCapNhat.ToString("dd/MM/yyyy HH:mm")</td>  <!-- Hiển thị ngày giờ -->
+                <td>
+                    <a asp-action="Edit" asp-route-id="@sp.SanPhamID" class="btn btn-sm btn-warning">Sửa</a>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@sp.SanPhamID)">Xóa</button>
+                    <form id="delete-@sp.SanPhamID" asp-action="Delete" asp-route-id="@sp.SanPhamID" method="post" style="display:none;">
+                        @Html.AntiForgeryToken()
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa?')) {
+            document.getElementById('delete-' + id).submit();
+        }
+    }
+</script>

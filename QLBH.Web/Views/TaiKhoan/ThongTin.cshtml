@@ -1,0 +1,43 @@
+﻿@model QLBH.BLL.DTOs.ThongTinCaNhanDto
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+<h2>Thông tin tài khoản</h2>
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Họ và tên</dt>
+            <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.HoTen) ? "Chưa cập nhật" : Model.HoTen)</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Số điện thoại</dt>
+            <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.SoDienThoai) ? "Chưa cập nhật" : Model.SoDienThoai)</dd>
+
+            @if (Model.VaiTro == "KhachHang")
+            {
+                <dt class="col-sm-3">Địa chỉ</dt>
+                <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.DiaChi) ? "Chưa cập nhật" : Model.DiaChi)</dd>
+            }
+
+            @if (Model.VaiTro == "NhanVien")
+            {
+                <dt class="col-sm-3">Mã nhân viên</dt>
+                <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.MaNhanVien) ? "Chưa có" : Model.MaNhanVien)</dd>
+
+                <dt class="col-sm-3">Ngày vào làm</dt>
+                <dd class="col-sm-9">@(Model.NgayVaoLam?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")</dd>
+            }
+
+            <dt class="col-sm-3">Vai trò</dt>
+            <dd class="col-sm-9">@(Model.VaiTro == "NhanVien" ? "Nhân viên" : "Khách hàng")</dd>
+
+            <dt class="col-sm-3">Trạng thái</dt>
+            <dd class="col-sm-9">@(Model.TrangThai ? "Hoạt động" : "Khóa")</dd>
+        </dl>
+
+        <a asp-action="CapNhatThongTin" class="btn btn-primary">Cập nhật thông tin</a>
+        <a asp-action="DoiMatKhau" class="btn btn-warning">Đổi mật khẩu</a>
+    </div>
+</div>
